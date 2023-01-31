@@ -1,4 +1,4 @@
-name: CI DDB7 Client
+name: CI APP Client
 on:
   push:
     branches: [ main, development ]
