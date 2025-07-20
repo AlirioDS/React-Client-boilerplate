@@ -36,7 +36,7 @@ const PerformanceExample = React.memo(() => {
       </div>
       
       <div className="results-container">
-        <p>Mostrando {filteredResults.length} resultados para: "{deferredQuery}"</p>
+        <p>Mostrando {filteredResults.length} resultados para: &quot;{deferredQuery}&quot;</p>
         <ul className="results-list">
           {filteredResults.map((item, index) => (
             <li key={index} className="result-item">

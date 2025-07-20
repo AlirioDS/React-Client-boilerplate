@@ -3,7 +3,7 @@ import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals';
 
 // Singleton pattern to prevent multiple listeners
 let listenersRegistered = false;
-let performanceCallbacks = new Set();
+const performanceCallbacks = new Set();
 
 // Register web-vitals listeners only once
 const registerWebVitalsListeners = () => {
@@ -30,7 +30,7 @@ const registerWebVitalsListeners = () => {
   listenersRegistered = true;
   
   if (import.meta.env.DEV) {
-    console.log('🚀 Web Vitals listeners registered once');
+    console.warn('🚀 Web Vitals listeners registered once');
   }
 };
 
@@ -51,7 +51,7 @@ export const usePerformanceMonitor = (onPerfEntry) => {
     
     // Log to console in development (only once per metric)
     if (import.meta.env.DEV) {
-      console.log(`${metric.name}: ${metric.value}${metric.rating ? ` (${metric.rating})` : ''}`);
+      console.warn(`${metric.name}: ${metric.value}${metric.rating ? ` (${metric.rating})` : ''}`);
     }
   }, []);
 

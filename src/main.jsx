@@ -14,6 +14,6 @@ root.render(
 
 // Development confirmation
 if (import.meta.env.DEV) {
-  console.log('🎉 React 19 + Vite app initialized successfully!');
-  console.log('📊 Performance monitoring ready (no infinite loops)');
+  console.warn('🎉 React 19 + Vite app initialized successfully!');
+  console.warn('📊 Performance monitoring ready (no infinite loops)');
 }
