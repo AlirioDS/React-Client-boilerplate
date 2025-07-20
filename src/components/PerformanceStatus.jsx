@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import usePerformanceMonitor from '@hooks/usePerformanceMonitor.js';
+import { usePerformanceMonitor } from '@hooks';
+import { LOADING_MESSAGES, RATING_COLORS } from '../constants';
 
+/**
+ * PerformanceStatus Component
+ * 
+ * Displays real-time Web Vitals performance metrics
+ * Features:
+ * - Real-time metric updates
+ * - Color-coded performance ratings
+ * - Deduplication to prevent infinite loops
+ * 
+ * @returns {JSX.Element} Performance monitoring display
+ */
 const PerformanceStatus = () => {
   const [metrics, setMetrics] = useState(new Map());
 
@@ -22,6 +34,13 @@ const PerformanceStatus = () => {
     ...data
   }));
 
+  /**
+   * Get background color for performance rating
+   * @param {string} rating - Performance rating (good, needs-improvement, poor)
+   * @returns {string} Color hex code
+   */
+  const getRatingColor = (rating) => RATING_COLORS[rating] || RATING_COLORS.poor;
+
   return (
     <div style={{ 
       background: 'rgba(255, 255, 255, 0.1)', 
@@ -31,7 +50,7 @@ const PerformanceStatus = () => {
     }}>
       <h4>🚀 Web Vitals Monitor (Live)</h4>
       {metricsArray.length === 0 ? (
-        <p>Esperando métricas de rendimiento...</p>
+        <p>{LOADING_MESSAGES.METRICS}</p>
       ) : (
         <ul style={{ textAlign: 'left', fontSize: '0.9rem' }}>
           {metricsArray.map((metric) => (
@@ -43,8 +62,7 @@ const PerformanceStatus = () => {
                   padding: '0.2rem 0.4rem',
                   borderRadius: '4px',
                   fontSize: '0.8rem',
-                  backgroundColor: metric.rating === 'good' ? '#22c55e' : 
-                                  metric.rating === 'needs-improvement' ? '#f59e0b' : '#ef4444',
+                  backgroundColor: getRatingColor(metric.rating),
                   color: 'white'
                 }}>
                   {metric.rating}

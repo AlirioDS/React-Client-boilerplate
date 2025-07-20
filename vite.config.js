@@ -41,6 +41,9 @@ export default defineConfig(({ command, mode }) => {
         '@': resolve(__dirname, 'src'),
         '@components': resolve(__dirname, 'src/components'),
         '@hooks': resolve(__dirname, 'src/hooks'),
+        '@constants': resolve(__dirname, 'src/constants'),
+        '@utils': resolve(__dirname, 'src/utils'),
+        '@types': resolve(__dirname, 'src/types'),
       },
     },
 
@@ -71,11 +74,13 @@ export default defineConfig(({ command, mode }) => {
     test: {
       globals: true,
       environment: 'jsdom',
+      setupFiles: ['./vitest.setup.js'],
       css: true,
       coverage: {
         reporter: ['text', 'json', 'html'],
         exclude: [
           'node_modules/',
+          'vitest.setup.js',
         ],
       },
     },
