@@ -5,6 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./src:/app/src
+      - ./public:/app/public
+    environment:
+      - VITE_ENABLE_PERFORMANCE_MONITORING=true
